@@ -1,0 +1,24 @@
+{
+    "name": "dreamcampaigns/managesend-bundle",
+    "description": "Dream Campaigns API integration for your Symfony project",
+    "keywords": ["dream", "campaign", "api"],
+    "homepage": "https://api.managesend.com/",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.7|~3.0|~4.0",
+        "dreamcampaigns/managesend-php": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Managesend\\ApiBundle\\": ""
+        }
+    },
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "git@me.github.com:dreamcampaigns/managesend-php.git"
+      }
+    ]
+}
