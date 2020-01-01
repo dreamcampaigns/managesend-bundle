@@ -14,11 +14,5 @@
         "psr-4": {
             "Managesend\\ApiBundle\\": ""
         }
-    },
-    "repositories": [
-      {
-        "type": "vcs",
-        "url": "git@me.github.com:dreamcampaigns/managesend-php.git"
-      }
-    ]
+    }
 }
