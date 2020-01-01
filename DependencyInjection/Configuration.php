@@ -22,9 +22,10 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('managesend_api');
         $rootNode
             ->children()
-            ->scalarNode('api_key')->defaultValue(NULL)->end()
-            ->scalarNode('api_secret')->defaultValue(NULL)->end()
-            ->scalarNode('client_id')->defaultValue(NULL)->end()
+            ->scalarNode('api_key')->defaultNull()->end()
+            ->scalarNode('api_secret')->defaultNull()->end()
+            ->scalarNode('client_id')->defaultNull()->end()
+            ->integerNode('timeout')->min(0)->max(100)->defaultValue(60)->end() //default timeout: 60 secs
             ->end();
 
         return $treeBuilder;

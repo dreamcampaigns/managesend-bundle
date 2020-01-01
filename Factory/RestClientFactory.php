@@ -5,6 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Managesend\ApiBundle\Factory;
 
 use Managesend\RestClient;
@@ -23,7 +24,7 @@ class RestClientFactory
      */
     public static function create(array $config)
     {
-        $restClient = new RestClient($config["api_key"],$config["api_secret"],$config["client_id"]);
+        $restClient = new RestClient($config["api_key"], $config["api_secret"], $config["client_id"], NULL, $config['timeout']);
 
         return $restClient;
     }

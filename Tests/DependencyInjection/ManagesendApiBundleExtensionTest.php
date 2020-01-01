@@ -28,7 +28,8 @@ class ManagesendApiBundleExtensionTest extends TestCase
         $this->defaultConfig = array(
             'api_key' => NULL,
             'api_secret' => NULL,
-            'client_id' => NULL
+            'client_id' => NULL,
+            'timeout' => NULL
         );
     }
 
@@ -44,7 +45,8 @@ class ManagesendApiBundleExtensionTest extends TestCase
         $config = array(
             'api_key' => 'api_key',
             'api_secret'=>'api_secret',
-            'client_id'=>'client_id'
+            'client_id'=>'client_id',
+            'timeout' => 10
         );
 
         $this->extension->load(array($config), $this->container);
@@ -63,8 +65,6 @@ class ManagesendApiBundleExtensionTest extends TestCase
         $this->extension->load(array($config), $this->container);
 
         $definition = $this->container->getDefinition('managesend_api');
-
-        //$this->container->get("managesend_api")->
 
         $this->assertEquals($this->container->getParameter("managesend_api_rest.class"), (string) $definition->getClass(),'managesend_api class is correct');
 

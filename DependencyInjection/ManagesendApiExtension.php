@@ -14,6 +14,7 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Managesend\RestClient;
 
 /**
  * Class ManagesendApiExtension
@@ -38,9 +39,14 @@ class ManagesendApiExtension extends Extension
         $configDefinition->addArgument($config);
         $container->setDefinition($configId, $configDefinition);
 
+        $config['api_key'] = $config['api_key'] ?: $_ENV[RestClient::ENV_TOKEN_KEY];
+        $config['api_secret'] = $config['api_secret'] ?: $_ENV[RestClient::ENV_TOKEN_SECRET];
+        $config['client_id'] = $config['client_id'] ?: $_ENV[RestClient::ENV_CLIENT_ID];
+
         $container->setParameter('managesend_api.api_key', $config['api_key']);
         $container->setParameter('managesend_api.api_secret', $config['api_secret']);
         $container->setParameter('managesend_api.client_id', $config['client_id']);
+        $container->setParameter('managesend_api.timeout', $config['timeout']);
     }
 
     public function getAlias()
