@@ -8,5 +8,6 @@
     </parameters>
     <services>
         <service id="managesend_api" class="%managesend_api_rest.class%" public="true" />
+        <service id="%managesend_api_rest.class%" alias="managesend_api" />
     </services>
 </container>

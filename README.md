@@ -1,10 +1,22 @@
-# managesendBundle
+# ManagesendBundle
 
-This bundle integrates [DreamCampaigns API](https://github.com/dreamcampaigns/managesend-php). into Symfony2.
+![Travis (.org)](https://img.shields.io/travis/dreamcampaigns/managesend-bundle)
+![Packagist](https://img.shields.io/packagist/l/dreamcampaigns/managesend-bundle)
+![Packagist Version](https://img.shields.io/packagist/v/dreamcampaigns/managesend-bundle)
+![Packagist](https://img.shields.io/packagist/dt/dreamcampaigns/managesend-bundle)
+
+This bundle integrates [DreamCampaigns API](https://github.com/dreamcampaigns/managesend-php) into your Symfony application.
+
+## Prerequisites
+
+This version of the bundle requires Symfony 2.7, 3.x. or 4.x
 
 ## Installation
 
-## Symfony 2.1 and above (using Composer)
+**managesend-bundle** is available on Packagist as the
+[`dreamcampaigns/managesend-bundle`](https://packagist.org/packages/dreamcampaigns/managesend-bundle) package.
+
+## Symfony 2.7 and 3 (using Composer)
 
 Require the bundle in your composer.json file:
 
@@ -36,64 +48,69 @@ public function registerBundles()
 }
 ```
 
-## Symfony 2.0.*
+## Configuration in Symfony 2.7 and 3
 
-### Submodule Creation
+**Add DreamCampaigns Api keys**
 
-Add HTMLPurifier and this bundle to your `vendor/` directory:
+```yaml
+#app/config/config.yml
 
-``` bash
-$ git submodule add git://github.com/Exercise/HTMLPurifierBundle.git vendor/bundles/Exercise/HTMLPurifierBundle
-$ git submodule add git://github.com/ezyang/htmlpurifier.git vendor/htmlpurifier
+managesend_api:
+    api_key: <Your API Token Key>
+    api_secret: <Your API Token Secret>
+    client_id: <Your Client id> #optional for some calls
+    timeout: 60 #optional timeout value, default is 60 secs
+```
+## Configuration in Symfony 4 and up
+
+**Add DreamCampaigns Api keys**
+
+You can add your Api keys to the `managesend_api.yaml`
+
+```yaml
+# config/packages/managesend_api.yaml
+
+managesend_api:
+    api_key: <Your API Token Key>
+    api_secret: <Your API Token Secret>
+    client_id: <Your Client id> #optional for some calls
+    timeout: 60 #optional timeout value, default is 60 secs
+```
+ or use the .env
+ 
+```dotenv
+MANAGESEND_TOKEN_KEY=ACXXXXXX
+MANAGESEND_TOKEN_SECRET=YXYXYX
+MANAGESEND_CLIENT_ID=c5is8tltkk00018k9ype5lg741
 ```
 
-### Class Autoloading
+### Usage
 
-Register "HTMLPurifier" and the "Exercise" namespace prefix in your project's
-`autoload.php`:
+The API is available with the `managesend_api` service.
+To access it, get it from controller container:
 
-``` php
-# app/autoload.php
-
-$loader->registerNamespaces(array(
-    'Exercise' => __DIR__ . '/../vendor/bundles',
-));
-
-$loader->registerPrefixes(array(
-    'HTMLPurifier' => __DIR__ . '/../vendor//htmlpurifier/library',
-));
+```php
+<?php
+$managesend = $this->get('managesend_api');
 ```
 
-### Application Kernel
+Or use DependencyInjection
+```php
 
-Add HTMLPurifierBundle to the `registerBundles()` method of your application
-kernel:
-
-``` php
-# app/AppKernel.php
-
-public function registerBundles()
+public function TestAction(\Managesend\RestClient $managesend)
 {
-    return array(
-        // ...
-        new Managesend\ApiBundle\ManagesendApiBundle(),
-        // ...
-    );
+   $result = $managesend->clients()->getClients();
 }
 ```
 
-## Configuration
+## Examples
 
-If you do not explicitly configure this bundle, an HTMLPurifier service will be
-defined as `exercise_html_purifier.default`. This behavior is the same as if you
-had specified the following configuration:
+Samples for accessing all resources can be found in the examples directory of [`dreamcampaigns/managesend-php`](https://packagist.org/packages/dreamcampaigns/managesend-php)
 
-``` yaml
-# app/config.yml
+## Documentation
 
-managesend_api:
-    api_key: 
-    api_secret: 
-    client_id: 
-```
+For more details you can reffer to the [`DreamCampaigns API documentations`][apidocs]
+
+[apidocs]: https://api.managesend.com/
+
 
