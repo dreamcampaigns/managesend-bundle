@@ -10,6 +10,9 @@
         "symfony/framework-bundle": "~2.7|~3.0|~4.0",
         "dreamcampaigns/managesend-php": "^1.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": ">=4.8"
+    },
     "autoload": {
         "psr-4": {
             "Managesend\\ApiBundle\\": ""
