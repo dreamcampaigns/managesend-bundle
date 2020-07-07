@@ -12,7 +12,6 @@ jobs:
     - php: 7.2
     - php: 7.3
     - php: 7.4
-    - php: hhvm
 
 matrix:
     fast_failure: true
@@ -56,8 +55,7 @@ before_install:
   -
 install: if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --prefer-stable --prefer-dist --no-interaction; else composer update --prefer-dist --no-interaction; fi;
 
-script:
-  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+script: ./vendor/bin/phpunit --coverage-text
 
 notifications:
   email: false

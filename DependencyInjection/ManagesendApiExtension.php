@@ -39,9 +39,9 @@ class ManagesendApiExtension extends Extension
         $configDefinition->addArgument($config);
         $container->setDefinition($configId, $configDefinition);
 
-        $config['api_key'] = $config['api_key'] ?: $_ENV[RestClient::ENV_TOKEN_KEY];
-        $config['api_secret'] = $config['api_secret'] ?: $_ENV[RestClient::ENV_TOKEN_SECRET];
-        $config['client_id'] = $config['client_id'] ?: $_ENV[RestClient::ENV_CLIENT_ID];
+        $config['api_key'] = $config['api_key'] ?: (isset($_ENV[RestClient::ENV_TOKEN_KEY]) ? $_ENV[RestClient::ENV_TOKEN_KEY] : "");
+        $config['api_secret'] = $config['api_secret'] ?: (isset($_ENV[RestClient::ENV_TOKEN_SECRET]) ? $_ENV[RestClient::ENV_TOKEN_SECRET] : "");
+        $config['client_id'] = $config['client_id'] ?: (isset($_ENV[RestClient::ENV_CLIENT_ID]) ? $_ENV[RestClient::ENV_CLIENT_ID] : "");
 
         $container->setParameter('managesend_api.api_key', $config['api_key']);
         $container->setParameter('managesend_api.api_secret', $config['api_secret']);

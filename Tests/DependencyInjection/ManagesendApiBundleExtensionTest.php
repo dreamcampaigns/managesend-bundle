@@ -29,7 +29,7 @@ class ManagesendApiBundleExtensionTest extends TestCase
             'api_key' => NULL,
             'api_secret' => NULL,
             'client_id' => NULL,
-            'timeout' => NULL
+            'timeout' => 60
         );
     }
 

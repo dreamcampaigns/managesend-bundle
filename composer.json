@@ -1,7 +1,7 @@
 {
     "name": "dreamcampaigns/managesend-bundle",
-    "description": "Dream Campaigns API integration for your Symfony project",
-    "keywords": ["dream", "campaign", "api"],
+    "description": "DreamCampaigns API integration for your Symfony project",
+    "keywords": ["dreamcampaigns","dream", "campaign", "api","email","sms"],
     "homepage": "https://api.managesend.com/",
     "type": "symfony-bundle",
     "license": "MIT",
