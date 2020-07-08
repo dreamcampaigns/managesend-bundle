@@ -18,9 +18,8 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('managesend_api');
-        $rootNode
+        $treeBuilder = new TreeBuilder("managesend_api");
+        $treeBuilder->getRootNode()
             ->children()
             ->scalarNode('api_key')->defaultNull()->end()
             ->scalarNode('api_secret')->defaultNull()->end()
