@@ -57,6 +57,16 @@ install:
   - if [ -z "$dependencies" ]; then composer update  --dev --prefer-dist --no-interaction; fi;
   - if [ "$dependencies" = "lowest" ]; then composer update  --dev --prefer-lowest --prefer-stable --prefer-dist --no-interaction; fi;
 
+before_script:
+  - |
+    echo "TRAVIS_PHP_VERSION:" $TRAVIS_PHP_VERSION;
+    php -v;
+    php -r 'echo "PHP: ".PHP_VERSION."\n";';
+    if [ $(echo "$TRAVIS_PHP_VERSION >= 7.2" | bc -l) -eq 1 ]; then
+      echo using PHPUnit 7.5.2
+      curl -sSfL -o ~/.phpenv/versions/$TRAVIS_PHP_VERSION/bin/phpunit https://phar.phpunit.de/phpunit-7.5.2.phar;
+    fi
+    
 script: ./vendor/bin/phpunit --coverage-text
 
 notifications:
