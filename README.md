@@ -16,7 +16,7 @@ This version of the bundle requires Symfony 5 for Symfony 2, 3 or 4 versions try
 **managesend-bundle** is available on Packagist as the
 [`dreamcampaigns/managesend-bundle`](https://packagist.org/packages/dreamcampaigns/managesend-bundle) package.
 
-## Using Composer
+## Symfony 2.7 and 3 (using Composer)
 
 Require the bundle in your composer.json file:
 
@@ -34,7 +34,34 @@ Install the bundle:
 $ composer require dreamcampaigns/managesend-bundle
 ```
 
-## Configuration
+Register the bundle:
+
+``` php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    return array(
+        new Managesend\ApiBundle\ManagesendApiBundle(),
+        // ...
+    );
+}
+```
+
+## Configuration in Symfony 2.7 and 3
+
+**Add DreamCampaigns Api keys**
+
+```yaml
+#app/config/config.yml
+
+managesend_api:
+    api_key: <Your API Token Key>
+    api_secret: <Your API Token Secret>
+    client_id: <Your Client id> #optional for some calls
+    timeout: 60 #optional timeout value, default is 60 secs
+```
+## Configuration in Symfony 4 and up
 
 **Add DreamCampaigns Api keys**
 
@@ -60,8 +87,14 @@ MANAGESEND_CLIENT_ID=c5is8tltkk00018k9ype5lg741
 ### Usage
 
 The API is available with the `managesend_api` service.
-To access it, use DependencyInjection:
+To access it, get it from controller container:
 
+```php
+<?php
+$managesend = $this->get('managesend_api');
+```
+
+Or use DependencyInjection
 ```php
 
 public function TestAction(\Managesend\RestClient $managesend)
