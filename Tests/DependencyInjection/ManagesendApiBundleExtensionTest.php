@@ -20,7 +20,7 @@ class ManagesendApiBundleExtensionTest extends TestCase
 
     private $defaultConfig;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->container = new ContainerBuilder();
         $this->extension = new ManagesendApiExtension();

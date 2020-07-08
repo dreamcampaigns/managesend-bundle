@@ -54,8 +54,8 @@ before_install:
   - if [ "$stability" != "" ]; then composer config minimum-stability $stability; fi;
 
 install:
-  - if [ -z "$dependencies" ]; then composer update --prefer-dist --no-interaction; fi;
-  - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --prefer-stable --prefer-dist --no-interaction; fi;
+  - if [ -z "$dependencies" ]; then composer update  --dev --prefer-dist --no-interaction; fi;
+  - if [ "$dependencies" = "lowest" ]; then composer update  --dev --prefer-lowest --prefer-stable --prefer-dist --no-interaction; fi;
 
 script: ./vendor/bin/phpunit --coverage-text
 
