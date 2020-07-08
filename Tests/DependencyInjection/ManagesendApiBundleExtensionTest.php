@@ -4,8 +4,9 @@ namespace Managesend\ApiBundle\Tests\DependencyInjection;
 
 use Managesend\ApiBundle\DependencyInjection\ManagesendApiExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use PHPUnit\Framework\TestCase;
 
-class ManagesendApiBundleExtensionTest extends \PHPUnit\Framework\TestCase
+class ManagesendApiBundleExtensionTest extends TestCase
 {
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerBuilder
