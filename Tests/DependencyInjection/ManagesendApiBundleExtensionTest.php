@@ -3,8 +3,8 @@
 namespace Managesend\ApiBundle\Tests\DependencyInjection;
 
 use Managesend\ApiBundle\DependencyInjection\ManagesendApiExtension;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use PHPUnit\Framework\TestCase;
 
 class ManagesendApiBundleExtensionTest extends TestCase
 {
@@ -20,7 +20,7 @@ class ManagesendApiBundleExtensionTest extends TestCase
 
     private $defaultConfig;
 
-    protected function setUp()
+    protected function setUp() :void
     {
         $this->container = new ContainerBuilder();
         $this->extension = new ManagesendApiExtension();
